@@ -44,6 +44,15 @@ Write code before the test? Delete it. Start over.
 
 Implement fresh from tests. Period.
 
+## Working Style
+
+**Always work in vertical slices, never horizontal slices.**
+
+- **Vertical slice**: one failing test → one minimal implementation → verify green → next test
+- **Horizontal slice**: write many tests first, or many implementation pieces first, then try to connect them later
+
+Horizontal slicing creates brittle tests, speculative interfaces, and fake progress. TDD requires a complete red-green-refactor loop for one behavior before moving to the next.
+
 ## Red-Green-Refactor
 
 ```dot
@@ -108,7 +117,9 @@ Vague name, tests mock not code
 **Requirements:**
 - One behavior
 - Clear name
+- Test through the public interface when possible
 - Real code (no mocks unless unavoidable)
+- Prefer behavior over implementation details
 
 ### Verify RED - Watch It Fail
 
@@ -195,6 +206,8 @@ Keep tests green. Don't add behavior.
 
 Next failing test for next feature.
 
+Do not queue up multiple future tests before the current test reaches green. One behavior per cycle.
+
 ## Good Tests
 
 | Quality | Good | Bad |
@@ -268,6 +281,7 @@ Tests-first force edge case discovery before implementing. Tests-after verify yo
 | "TDD will slow me down" | TDD faster than debugging. Pragmatic = test-first. |
 | "Manual test faster" | Manual doesn't prove edge cases. You'll re-test every change. |
 | "Existing code has no tests" | You're improving it. Add tests for existing code. |
+| "I'll write several tests first" | That's horizontal slicing. Finish one full red-green cycle first. |
 
 ## Red Flags - STOP and Start Over
 
@@ -284,6 +298,7 @@ Tests-first force edge case discovery before implementing. Tests-after verify yo
 - "Already spent X hours, deleting is wasteful"
 - "TDD is dogmatic, I'm being pragmatic"
 - "This is different because..."
+- Writing several future tests before the current slice is green
 
 **All of these mean: Delete code. Start over with TDD.**
 
