@@ -6,7 +6,7 @@ set -euo pipefail
 #   ./scripts/link-macos.sh
 #   ./scripts/link-macos.sh /path/to/skills-root
 
-ROOT="${1:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
+ROOT="${1:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../skills" && pwd)}"
 DESTS=(
   "$HOME/.codex/skills"
   "$HOME/.claude/skills"

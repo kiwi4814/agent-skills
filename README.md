@@ -98,8 +98,8 @@
 
 | 类别 | 定位 | 典型内容 |
 | --- | --- | --- |
-| 个人自建 skills | 我的个人开发习惯、维护规范、工具链约定、业务/信息获取方式 | `agent-skills-manager`、`python-dev |
-| 零散开源工具型 skills | 按需调用的独立工具件，不承担整套主流程 | `skill-creator`、`find-skills` 、`web-access` |
+| 个人自建 skills | 我的个人开发习惯、维护规范、工具链约定、业务/信息获取方式 | `agent-skills-manager`、`python-dev`、`web-access` |
+| 零散开源工具型 skills | 按需调用的独立工具件，不承担整套主流程 | `skill-creator`、`find-skills`、`claude-design` |
 | `superpowers` 流程技能组 | 一整套软件开发流程方法论，必须整体理解 | 14 个 superpowers skills |
 | 新增补强 skills | 吸收外部优秀实践后补进来的高频场景能力 | `diagnose-bug`、`grill-plan`、`zoom-out`、`gh-fix-ci`、`gh-address-comments` |
 
@@ -137,13 +137,14 @@
 - 当你不需要完整开发流程，只需要某个明确的能力部件时。
 - 当你需要借助一个专门 skill 来提高 skill 体系建设效率时。
 
-**来源：** 这一类主要来自零散吸收的开源 skill；其中 `skill-creator` 参考自 GitHub 项目 [riverfjs/skills 的 skill-creator](https://github.com/riverfjs/skills/blob/main/skill-creator/SKILL.md)，`web-access` 参考自 GitHub 项目 [eze-is/web-access](https://github.com/eze-is/web-access)
+**来源：** 这一类主要来自零散吸收的开源 skill；其中 `skill-creator` 参考自 GitHub 项目 [riverfjs/skills 的 skill-creator](https://github.com/riverfjs/skills/blob/main/skill-creator/SKILL.md)，`web-access` 参考自 GitHub 项目 [eze-is/web-access](https://github.com/eze-is/web-access)，`claude-design` 安装自 GitHub 项目 [jiji262/claude-design-skill](https://github.com/jiji262/claude-design-skill)。
 
 | Skill | 定位 | 何时用 |
 | --- | --- | --- |
 | `skill-creator` | 创建或重构 skill，本质上是一个“skill 作者工具” | 当要新建 skill、重构 skill，或提升 `SKILL.md` 质量时 |
 | `find-skills` | 当现有 skill 不够用时，用来发现和安装外部 skill | 当用户在问“有没有 skill 能做 X”或需要扩展 skill 能力时 |
 | `web-access` | 联网访问与浏览器能力，覆盖搜索、网页提取、CDP 浏览器操作、登录态页面访问、站点经验沉淀 | 当任务需要联网搜索、读取网页、进入浏览器交互或使用登录态访问内容时 |
+| `claude-design` | 面向设计产出的专用 skill，强调把模糊创意需求落成 HTML 形式的高保真设计物，如 landing page、deck、prototype、poster、wireframe | 当用户明确要做视觉设计、UI 方案、交互原型、演示稿、品牌化页面或多种设计方向探索时 |
 
 ---
 

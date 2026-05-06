@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT="${1:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
+ROOT="${1:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../skills" && pwd)}"
 
 echo "== canonical skills: $ROOT =="
 find "$ROOT" -maxdepth 2 -name SKILL.md -print | sort
@@ -10,7 +10,7 @@ for dir in "$HOME/.codex/skills" "$HOME/.claude/skills" "$HOME/.lingma/skills"; 
   echo
   echo "== $dir =="
   if [ -d "$dir" ]; then
-    find "$dir" -maxdepth 2 -name SKILL.md -print | sort
+    find -L "$dir" -maxdepth 2 -name SKILL.md -print | sort
   else
     echo "missing"
   fi
