@@ -2,6 +2,12 @@ param(
   [string]$Root = (Resolve-Path (Join-Path $PSScriptRoot "..\skills")).Path
 )
 
+# Fail fast if the resolved target is not the expected skills directory.
+if (!(Test-Path $Root) -or (Split-Path $Root -Leaf) -ne 'skills') {
+  Write-Error "Fatal: invalid skills root: $Root"
+  exit
+}
+
 $Dests = @(
   "$HOME\.codex\skills",
   "$HOME\.claude\skills",
@@ -9,15 +15,21 @@ $Dests = @(
 )
 
 foreach ($dest in $Dests) {
-  New-Item -ItemType Directory -Force -Path $dest | Out-Null
+  if (!(Test-Path $dest)) {
+    New-Item -ItemType Directory -Force -Path $dest | Out-Null
+  }
 }
 
 $linked = 0
 $skipped = 0
 
+Write-Host "linking skills from: $Root" -ForegroundColor Cyan
+
 Get-ChildItem $Root -Directory | ForEach-Object {
   $skill = $_.FullName
   $name = $_.Name
+
+  # Ignore directories that are not valid skills.
   $skillMd = Join-Path $skill "SKILL.md"
   if (!(Test-Path $skillMd)) { return }
 
@@ -29,7 +41,7 @@ Get-ChildItem $Root -Directory | ForEach-Object {
       if ($item.LinkType -eq "SymbolicLink" -or $item.LinkType -eq "Junction") {
         Remove-Item $target -Force -Recurse
       } else {
-        Write-Host "SKIP: $target exists and is not a link"
+        Write-Host "SKIP: $target exists and is not a link" -ForegroundColor Yellow
         $skipped += 1
         continue
       }
@@ -45,4 +57,4 @@ Get-ChildItem $Root -Directory | ForEach-Object {
   }
 }
 
-Write-Host "done: linked=$linked skipped=$skipped root=$Root"
+Write-Host "done: linked=$linked skipped=$skipped root=$Root" -ForegroundColor Green
